@@ -6,7 +6,7 @@ var save_btns=[];
 var remove_btns=[];
 var load_btns=[];
 
-var x = () => 
+var store_tab = () => 
 {
     chrome.windows.getAll( (win_all) =>
     {
@@ -28,7 +28,7 @@ var x = () =>
 
 
 
-var y =  () =>
+var current_tab_data =  () =>
 {
     var temp1=b.length;
 
@@ -98,7 +98,7 @@ var remove_files = (clicked_btn) =>
 {
     var clicked_id=(clicked_btn.toElement.id);   
     localStorage.removeItem("saved_window"+clicked_id);
-    z();
+    saved_tab_data();
 }
 
 
@@ -119,7 +119,7 @@ var load_files = (clicked_btn) =>
         chrome.windows.create({url: urls});   
 }
 
-var z =  () =>
+var saved_tab_data =  () =>
 {
     var temp1=localStorage.length;
     var saved_windows=[];
@@ -162,11 +162,11 @@ var z =  () =>
 
 
 //Function calls
-x();
+store_tab();
 
 setTimeout( () => {
-    y();    
-    z();
+    current_tab_data();    
+    saved_tab_data();
 
     save_btns = $('.save_btn');
     var mouse_event;
