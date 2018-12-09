@@ -6,17 +6,16 @@ var save_btns=[];
 var remove_btns=[];
 var load_btns=[];
 
-var x= function() 
+var x = () => 
 {
-    chrome.windows.getAll(function(win_all)
+    chrome.windows.getAll( (win_all) =>
     {
-        win_all.map(function(win)
+        win_all.map( (win) =>
         {
             b=[];
-            chrome.tabs.getAllInWindow(win.id, function(tab_all) 
-            {
+            chrome.tabs.getAllInWindow(win.id, (tab_all) => {
                 a=[];
-                tab_all.map(function(tab_each) { 
+                tab_all.map( (tab_each) => { 
                     a.push(tab_each);
                 });
                 b.push(a);
@@ -29,7 +28,7 @@ var x= function()
 
 
 
-var y= function () 
+var y =  () =>
 {
     var temp1=b.length;
 
@@ -65,13 +64,11 @@ var y= function ()
 };
 
 
-function save_files(clicked_btn)
+var save_files = (clicked_btn) =>
 {
-    var clicked_id=parseInt(clicked_btn.toElement.id);
-    
+    var clicked_id=parseInt(clicked_btn.toElement.id);  
     var temp=[];
-    var this_win=b[clicked_id-1];
-    
+    var this_win=b[clicked_id-1];  
     var len=this_win.length;
     
     for(k=0;k<len;k++)
@@ -97,21 +94,19 @@ function save_files(clicked_btn)
     }
 }
 
-function remove_files(clicked_btn)
+var remove_files = (clicked_btn) =>
 {
-    var clicked_id=(clicked_btn.toElement.id);
-    
+    var clicked_id=(clicked_btn.toElement.id);   
     localStorage.removeItem("saved_window"+clicked_id);
     z();
 }
 
 
-function load_files(clicked_btn)
+var load_files = (clicked_btn) =>
 {
     var clicked_id=(clicked_btn.toElement.id);
     var saved_windows=[];
-    saved_windows.push( JSON.parse( localStorage.getItem("saved_window"+clicked_id)));
-    
+    saved_windows.push( JSON.parse( localStorage.getItem("saved_window"+clicked_id)));   
     var temp2=saved_windows[0].length;
     var ans=saved_windows[0];
     var urls=[];
@@ -124,7 +119,7 @@ function load_files(clicked_btn)
         chrome.windows.create({url: urls});   
 }
 
-var z= function () 
+var z =  () =>
 {
     var temp1=localStorage.length;
     var saved_windows=[];
@@ -169,17 +164,15 @@ var z= function ()
 //Function calls
 x();
 
-setTimeout(function() {
+setTimeout( () => {
     y();    
     z();
 
     save_btns = $('.save_btn');
     var mouse_event;
     for (i = 0; i < save_btns.length; i++) 
-        {
-            
-            save_btns[i].addEventListener("click",  function(mouse_event) {    
-                
+        {           
+            save_btns[i].addEventListener("click", (mouse_event) => {                    
                 save_files(mouse_event);
             });
        }
@@ -187,21 +180,18 @@ setTimeout(function() {
     remove_btns = $('.remove_btn');
     
     for (i = 0; i < remove_btns.length; i++) 
-        {
-            
-            remove_btns[i].addEventListener("click",  function(mouse_event) {    
+        {           
+            remove_btns[i].addEventListener("click", (mouse_event) => {    
                 
                 remove_files(mouse_event);
             });
        }
 
-     load_btns = $('.load_btn');
+    load_btns = $('.load_btn');
     
     for (i = 0; i < load_btns.length; i++) 
-        {
-            
-            load_btns[i].addEventListener("click",  function(mouse_event) {    
-                
+        {          
+            load_btns[i].addEventListener("click", (mouse_event) => {                   
                 load_files(mouse_event);
             });
        }
