@@ -12,7 +12,7 @@ var store_tab = () => {
             b=[];
             chrome.tabs.getAllInWindow(win.id, (tab_all) => {
                 a=[];
-                tab_all.map( (tab_each) => { 
+                tab_all.map( (tab_each) => {
                     a.push(tab_each);
                 });
                 b.push(a);
@@ -98,21 +98,21 @@ var saved_tab_data =  () => {
 store_tab();
 
 setTimeout( () => {
-    current_tab_data();    
+    current_tab_data();
     saved_tab_data();
 
     save_btns = $('.save_btn');
     var mouse_event;
-    for (i = 0; i < save_btns.length; i++) {           
-        save_btns[i].addEventListener("click", (mouse_event) => {  
+    for (i = 0; i < save_btns.length; i++) {
+        save_btns[i].addEventListener("click", (mouse_event) => {
             save_files(mouse_event);
         });
     }
 
     remove_btns = $('.remove_btn');
     
-    for (i = 0; i < remove_btns.length; i++) {           
-        remove_btns[i].addEventListener("click", (mouse_event) => {    
+    for (i = 0; i < remove_btns.length; i++) {
+        remove_btns[i].addEventListener("click", (mouse_event) => {
             remove_files(mouse_event);
         });
     }
@@ -120,7 +120,7 @@ setTimeout( () => {
     load_btns = $('.load_btn');
     
     for (i = 0; i < load_btns.length; i++) {
-        load_btns[i].addEventListener("click", (mouse_event) => {           
+        load_btns[i].addEventListener("click", (mouse_event) => {
             load_files(mouse_event);
         });
     }

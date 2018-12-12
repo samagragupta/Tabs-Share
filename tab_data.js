@@ -41,5 +41,5 @@ var load_files = (clicked_btn) => {
         var u = tab.url;
         urls.push(u);
     }
-    chrome.windows.create({url: urls});   
+    chrome.windows.create({url: urls});
 }
