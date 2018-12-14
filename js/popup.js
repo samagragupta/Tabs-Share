@@ -26,8 +26,6 @@ var store_tab = () =>
     }
 )}
 
-
-
 var current_tab_data =  () =>
 {
     var temp1=b.length;
@@ -62,7 +60,6 @@ var current_tab_data =  () =>
     }
     document.getElementById('current').innerHTML=str1;
 };
-
 
 var save_files = (clicked_btn) =>
 {
@@ -100,7 +97,6 @@ var remove_files = (clicked_btn) =>
     localStorage.removeItem("saved_window"+clicked_id);
     saved_tab_data();
 }
-
 
 var load_files = (clicked_btn) =>
 {
@@ -159,7 +155,6 @@ var saved_tab_data =  () =>
     }
     document.getElementById('saved').innerHTML=str4;
 };
-
 
 //Function calls
 store_tab();
