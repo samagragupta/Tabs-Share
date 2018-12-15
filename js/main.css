@@ -5,6 +5,10 @@ body {
 	font: 12px 'Noto Sans' ,'lucida grande', helvetica, arial, sans-serif;
 }
 
+#main {
+	width: 400px;
+}
+
 #item {
 	width: 335px;
 	clear: both;
@@ -23,12 +27,12 @@ body {
 img {
 	float:left;
 	display: inline-block;
-	width:15px;
-	height: 15px;
-	padding-right: 5px;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+	  width:15px;
+	  height: 15px;
+	  padding-right: 5px;
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	  background-size: cover;
 }
 
 /* Switch Styling */
