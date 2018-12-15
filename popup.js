@@ -6,35 +6,28 @@ var save_btns=[];
 var remove_btns=[];
 var load_btns=[];
 
-var x= function() 
-{
-    chrome.windows.getAll(function(win_all)
-    {
-        win_all.map(function(win)
-        {
+var store_tab = () => {
+    chrome.windows.getAll( (win_all) => {
+        win_all.map( (win) => {
             b=[];
-            chrome.tabs.getAllInWindow(win.id, function(tab_all) 
-            {
+            chrome.tabs.getAllInWindow(win.id, (tab_all) => {
                 a=[];
-                tab_all.map(function(tab_each) { 
+                tab_all.map( (tab_each) => {
                     a.push(tab_each);
                 });
                 b.push(a);
             })
         })
         ans.push(b);
-
     }
 )}
 
 
 
-var y= function () 
-{
+var current_tab_data = () => {
     var temp1=b.length;
 
-    for(i=0;i<temp1;i++)
-    {
+    for(i=0;i<temp1;i++) {
         str1+='<div class="panel panel-default" id="window_'+(i+1)+'" >'+
         '<div class="panel-heading">'+
         '<h4 class="panel-title">'+
@@ -47,8 +40,7 @@ var y= function ()
         str2='';
         var temp2=b[i].length;
         var ans=b[i];
-        for(j=0;j<temp2;j++)
-        {
+        for(j=0;j<temp2;j++) {
             tab=ans[j];
             var f = tab.favIconUrl, t = tab.title, u = tab.url;
             if (!u) u = '';
@@ -64,17 +56,14 @@ var y= function ()
     document.getElementById('current').innerHTML=str1;
 };
 
-var z= function () 
-{
+var saved_tab_data =  () => {
     var temp1=localStorage.length;
     var saved_windows=[];
-    for(l=0;l<temp1;l++)
-    {
+    for(l=0;l<temp1;l++) {
         saved_windows.push( JSON.parse( localStorage.getItem("saved_window"+(l+1)) ));
     }
     str4='';
-    for(l=0;l<temp1;l++)
-    {
+    for(l=0;l<temp1;l++) {
         str4+='<div class="panel panel-default">'+
         '<div class="panel-heading">'+
         '<h4 class="panel-title">'+
@@ -88,8 +77,7 @@ var z= function ()
         str5='';
         var temp2=saved_windows[l].length;
         var ans=saved_windows[l];
-        for(m=0;m<temp2;m++)
-        {
+        for(m=0;m<temp2;m++) {
             tab=ans[m];
             var f = tab.favIconUrl, t = tab.title, u = tab.url;
             if (!u) u = '';
@@ -107,42 +95,33 @@ var z= function ()
 
 
 //Function calls
-x();
+store_tab();
 
-setTimeout(function() {
-    y();    
-    z();
+setTimeout( () => {
+    current_tab_data();
+    saved_tab_data();
 
     save_btns = $('.save_btn');
     var mouse_event;
-    for (i = 0; i < save_btns.length; i++) 
-        {
-            
-            save_btns[i].addEventListener("click",  function(mouse_event) {    
-                
-                save_files(mouse_event);
-            });
-       }
+    for (i = 0; i < save_btns.length; i++) {
+        save_btns[i].addEventListener("click", (mouse_event) => {
+            save_files(mouse_event);
+        });
+    }
 
     remove_btns = $('.remove_btn');
     
-    for (i = 0; i < remove_btns.length; i++) 
-        {
-            
-            remove_btns[i].addEventListener("click",  function(mouse_event) {    
-                
-                remove_files(mouse_event);
-            });
-       }
+    for (i = 0; i < remove_btns.length; i++) {
+        remove_btns[i].addEventListener("click", (mouse_event) => {
+            remove_files(mouse_event);
+        });
+    }
 
-     load_btns = $('.load_btn');
+    load_btns = $('.load_btn');
     
-    for (i = 0; i < load_btns.length; i++) 
-        {
-            
-            load_btns[i].addEventListener("click",  function(mouse_event) {    
-                
-                load_files(mouse_event);
-            });
-       }
+    for (i = 0; i < load_btns.length; i++) {
+        load_btns[i].addEventListener("click", (mouse_event) => {
+            load_files(mouse_event);
+        });
+    }
 }, 500);
